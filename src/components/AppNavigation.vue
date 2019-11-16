@@ -1,16 +1,13 @@
 <template>
     <span>
         <v-navigation-drawer app v-model="drawer" class="light-blue darken-4" dark disable-resize-watcher>
-            <v-list>
-                <template v-for="(item, index) in items">
-                    <v-list-tile :key="index">
-                        <v-list-tile-content>
-                            {{item.title}}
-                        </v-list-tile-content>
-                    </v-list-tile>
-                    <v-divider :key="`divider-${index}`"></v-divider>
-                </template>
-            </v-list>
+        <v-list dense>
+            <v-list-item v-for="(item, index) in items" :key="index" :to="item.url">
+                <v-list-item-content>
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+        </v-list>
         </v-navigation-drawer>
 
         <v-app-bar app color="light-blue darken-1" dark>
@@ -36,9 +33,9 @@ export default Vue.extend({
             appTitle: 'My Songbook',
             drawer: false,
             items: [
-                { title: 'Songs' },
-                { title: 'Artists' },
-                { title: 'Login' }
+                { title: 'Songs', url: '/songs', icon: 'dashboard' },
+                { title: 'Artists', url: '/artists', icon: 'dashboard' },
+                { title: 'Logout', url: '/logout', icon: 'dashboard' }
             ]
         };
     },
