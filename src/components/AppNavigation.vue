@@ -33,7 +33,7 @@ export default Vue.extend({
             appTitle: process.env.VUE_APP_TITLE,
             drawer: false,
             items: [
-                { title: 'Songs', url: '/', icon: 'dashboard' },
+                { title: 'Songs', url: '/songs', icon: 'dashboard' },
                 { title: 'Artists', url: '/artists', icon: 'dashboard' },
                 { title: 'Logout', url: '/logout', icon: 'dashboard' }
             ]

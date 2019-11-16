@@ -2,14 +2,21 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Songs from '../views/Songs.vue';
 import store from '../store/index';
+import Login from '../views/Login.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: '/',
+        name: 'login',
+        component: Login
+    },
+    {
+        path: '/songs',
         name: 'songs',
-        component: Songs,
+        component: () =>
+            import(/* webpackChunkName: "songs" */ '../views/Songs.vue'),
         meta: {
             authRequired: true
         }
@@ -22,12 +29,6 @@ const routes = [
         meta: {
             authRequired: true
         }
-    },
-    {
-        path: '/login',
-        name: 'login',
-        component: () =>
-            import(/* webpackChunkName: "artists" */ '../views/Login.vue')
     }
 ];
 
@@ -41,7 +42,7 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.authRequired)) {
         if (!store.state.isAuthenticated) {
             next({
-                path: '/login'
+                path: '/'
             });
         } else {
             next();

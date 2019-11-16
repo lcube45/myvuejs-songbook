@@ -22,5 +22,6 @@ var config = {
     projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
     storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGE_SENDER_ID
-  }
-  firebase.initializeApp(config)
+};
+
+firebase.initializeApp(config);

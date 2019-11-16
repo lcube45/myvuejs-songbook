@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         user: null,
-        isAuthenticated: false,
+        isAuthenticated: false
     },
     mutations: {
         setUser(state, payload) {
@@ -16,7 +16,7 @@ export default new Vuex.Store({
         },
         setIsAuthenticated(state, payload) {
             state.isAuthenticated = payload;
-        },
+        }
     },
     actions: {
         userLogin({ commit }, { email, password }) {
@@ -26,14 +26,14 @@ export default new Vuex.Store({
                 .then(user => {
                     commit('setUser', user);
                     commit('setIsAuthenticated', true);
-                    router.push('/about');
+                    router.push('/songs');
                 })
                 .catch(() => {
                     commit('setUser', null);
                     commit('setIsAuthenticated', false);
                     router.push('/');
                 });
-        },
+        }
     },
     getters: {
         isAuthenticated(state) {

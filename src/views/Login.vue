@@ -55,19 +55,19 @@ export default Vue.extend({
             email: '',
             password: '',
             emailRules: [
-                v => !!v || 'E-mail is required',
-                v => /.+@.+/.test(v) || 'E-mail must be valid'
+                (v: any) => !!v || 'E-mail is required',
+                (v: any) => /.+@.+/.test(v) || 'E-mail must be valid'
             ],
             passwordRules: [
-                v => !!v || 'Password is required',
-                v => v.length >= 6 || 'Password must be greater than 6 characters'
+                (v: any) => !!v || 'Password is required',
+                (v: any) => v.length >= 6 || 'Password must be greater than 6 characters'
             ]
         };
     },
 
     methods: {
         submit() {
-            if (this.$refs.form.validate()) {
+            if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
                 this.$store.dispatch('userLogin', {
                     email: this.email,
                     password: this.password
