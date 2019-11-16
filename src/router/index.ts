@@ -1,35 +1,33 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Songs from '../views/Songs.vue';
+import store from '../store/index';
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: '/',
-        name: 'home',
-        component: Home
-    },
-    {
-        path: '/songs',
         name: 'songs',
-        component: () =>
-            import(/* webpackChunkName: "about" */ '../views/Songs.vue')
+        component: Songs,
+        meta: {
+            authRequired: true
+        }
     },
     {
         path: '/artists',
         name: 'artists',
         component: () =>
-            import(/* webpackChunkName: "about" */ '../views/Artists.vue')
+            import(/* webpackChunkName: "artists" */ '../views/Artists.vue'),
+        meta: {
+            authRequired: true
+        }
     },
     {
-        path: '/about',
-        name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
+        path: '/login',
+        name: 'login',
         component: () =>
-            import(/* webpackChunkName: "about" */ '../views/About.vue')
+            import(/* webpackChunkName: "artists" */ '../views/Login.vue')
     }
 ];
 
@@ -37,6 +35,20 @@ const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
     routes
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.authRequired)) {
+        if (!store.state.isAuthenticated) {
+            next({
+                path: '/login'
+            });
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
 });
 
 export default router;

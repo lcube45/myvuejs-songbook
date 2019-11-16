@@ -6,7 +6,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-    name: 'artists',
+    name: 'Artists',
 
 });
 </script>

@@ -30,10 +30,10 @@ export default Vue.extend({
     name: 'AppNavigation',
     data() {
         return {
-            appTitle: 'My Songbook',
+            appTitle: process.env.VUE_APP_TITLE,
             drawer: false,
             items: [
-                { title: 'Songs', url: '/songs', icon: 'dashboard' },
+                { title: 'Songs', url: '/', icon: 'dashboard' },
                 { title: 'Artists', url: '/artists', icon: 'dashboard' },
                 { title: 'Logout', url: '/logout', icon: 'dashboard' }
             ]
