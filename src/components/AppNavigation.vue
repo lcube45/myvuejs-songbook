@@ -18,7 +18,6 @@
             <v-btn icon class="hidden-sm-and-down">
                 <v-icon>mdi-magnify</v-icon>
             </v-btn>
-            <v-btn text class="hidden-sm-and-down">LOGIN</v-btn>
         </v-app-bar>
     </span>
 </template>

@@ -16,10 +16,7 @@ const routes = [
         path: '/songs',
         name: 'songs',
         component: () =>
-            import(/* webpackChunkName: "songs" */ '../views/Songs.vue'),
-        meta: {
-            authRequired: true
-        }
+            import(/* webpackChunkName: "songs" */ '../views/Songs.vue')
     },
     {
         path: '/artists',
